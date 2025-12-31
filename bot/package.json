@@ -6,7 +6,8 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc",
+    "build": "npm run build:game && tsc",
+    "build:game": "cd ../game && npm install && npm run build && cd ../bot",
     "start": "node dist/index.js",
     "type-check": "tsc --noEmit"
   },
