@@ -1,0 +1,210 @@
+.dev-panel-container {
+  position: relative;
+}
+
+.dev-panel-toggle {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  opacity: 0.6;
+}
+
+.dev-panel-toggle:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dev-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(30, 30, 40, 0.95);
+  border: 1px solid rgba(200, 150, 255, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  min-width: 300px;
+  margin-top: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.dev-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(200, 150, 255, 0.2);
+  background: rgba(200, 150, 255, 0.05);
+  border-radius: 8px 8px 0 0;
+}
+
+.dev-panel-header h4 {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(200, 150, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dev-panel-close {
+  background: transparent;
+  border: none;
+  color: rgba(200, 150, 255, 0.6);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.dev-panel-close:hover {
+  color: rgba(200, 150, 255, 1);
+}
+
+.dev-panel-content {
+  padding: 16px;
+}
+
+.dev-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dev-section h5 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: rgba(200, 150, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dev-control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dev-control label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.dev-slider {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(200, 150, 255, 0.2);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.dev-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(200, 150, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dev-slider::-webkit-slider-thumb:hover {
+  background: rgba(200, 150, 255, 1);
+  transform: scale(1.2);
+}
+
+.dev-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(200, 150, 255, 0.8);
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.dev-slider::-moz-range-thumb:hover {
+  background: rgba(200, 150, 255, 1);
+  transform: scale(1.2);
+}
+
+.dev-number-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(200, 150, 255, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: monospace;
+  transition: all 0.2s ease;
+}
+
+.dev-number-input:focus {
+  outline: none;
+  border-color: rgba(200, 150, 255, 0.8);
+  background: rgba(200, 150, 255, 0.1);
+}
+
+.dev-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.dev-btn-apply,
+.dev-btn-reset {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dev-btn-apply {
+  background: rgba(100, 200, 150, 0.6);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.dev-btn-apply:hover {
+  background: rgba(100, 200, 150, 0.9);
+}
+
+.dev-btn-reset {
+  background: rgba(200, 100, 100, 0.4);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.dev-btn-reset:hover {
+  background: rgba(200, 100, 100, 0.7);
+}
+
+.dev-info {
+  padding: 8px 12px;
+  background: rgba(200, 150, 255, 0.05);
+  border: 1px solid rgba(200, 150, 255, 0.2);
+  border-radius: 4px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+}

@@ -1,0 +1,597 @@
+.inventory-root {
+  position: relative;
+}
+
+.inventory-toggle {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.inventory-toggle.compact {
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  border: 2px solid #ff69b4;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.messenger-toggle.compact {
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  border: 2px solid #ff69b4;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.messenger-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ff3b30;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.inventory-badge-dot {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  background: #ff69b4;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+.inventory-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30000;
+}
+
+.inventory-modal {
+  width: 1100px;
+  max-width: 95%;
+  max-height: 85vh;
+  background: #fff;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.inventory-header .title {
+  font-weight: 800;
+  color: #222;
+  font-size: 16px;
+}
+
+.inventory-body {
+  padding: 14px;
+  overflow: auto;
+}
+
+.inventory-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.inventory-controls label {
+  font-size: 13px;
+  color: #666;
+  font-weight: 600;
+}
+
+.small-filter-btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.small-filter-btn.active {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: #fff;
+  border: none;
+}
+
+.inventory-controls select {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.sort-filter-select {
+  padding: 6px 10px !important;
+  border-radius: 4px !important;
+  border: 1px solid #ddd !important;
+  font-size: 12px !important;
+  background: #fff !important;
+  color: #333 !important;
+  cursor: pointer !important;
+  min-width: 150px !important;
+  height: auto !important;
+  width: auto !important;
+}
+
+/* Pink background container for sort controls to match pink buttons visually */
+.pink-bg {
+  background: linear-gradient(135deg, rgba(255,105,180,0.14), rgba(255,20,147,0.12));
+  border-radius: 8px;
+}
+
+.pink-bg .sort-filter-select {
+  background: transparent !important;
+  border: none !important;
+  padding: 6px 8px !important;
+  min-width: 120px !important;
+  color: inherit !important;
+}
+
+.btn-reset {
+  padding: 6px 8px; /* smaller reset button */
+  border-radius: 6px;
+  border: 1px solid #b91c1c;
+  background: transparent;
+  color: #b91c1c;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: auto;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-reset:hover {
+  background: #b91c1c;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+}
+
+.inventory-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.inventory-item-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid rgba(255, 105, 180, 0.15);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(255, 245, 250, 0.8), rgba(255, 255, 255, 0.6));
+  align-items: center;
+  text-align: center;
+  min-height: 160px;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  animation: card-entrance 0.5s ease-out;
+}
+
+.inventory-item-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.25);
+  border-color: rgba(255, 105, 180, 0.4);
+  background: linear-gradient(135deg, rgba(255, 240, 245, 0.9), rgba(255, 230, 240, 0.8));
+}
+
+@keyframes card-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.inventory-item-card.is-new {
+  border: 2px solid #ff69b4;
+  background: linear-gradient(135deg, rgba(255, 192, 203, 0.4), rgba(255, 105, 180, 0.15));
+  box-shadow: 0 0 16px rgba(255, 105, 180, 0.35), inset 0 0 16px rgba(255, 105, 180, 0.1);
+  animation: new-item-pulse 4s ease-in-out infinite, new-item-glow 4s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes new-item-pulse {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(255, 105, 180, 0.35), inset 0 0 16px rgba(255, 105, 180, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(255, 105, 180, 0.5), inset 0 0 24px rgba(255, 105, 180, 0.15);
+  }
+}
+
+@keyframes new-item-glow {
+  0%, 100% {
+    background: linear-gradient(135deg, rgba(255, 192, 203, 0.4), rgba(255, 105, 180, 0.15));
+  }
+  50% {
+    background: linear-gradient(135deg, rgba(255, 192, 203, 0.6), rgba(255, 105, 180, 0.25));
+  }
+}
+
+@keyframes new-item-shine {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.inventory-item-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 6px;
+  border: 2px solid #ff69b4;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inventory-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inventory-item-image .placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.inventory-item-name {
+  font-weight: 700;
+  text-align: center;
+  color: #222;
+  font-size: 13px;
+  line-height: 1.2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inventory-item-count {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+}
+
+.inventory-item-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+
+.btn-use.small {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  flex: 1;
+  transition: all 0.2s;
+}
+
+.btn-use.small:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
+}
+
+.inventory-item-actions:empty {
+  display: none;
+}
+
+.muted {
+  color: #888;
+  padding: 8px;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+/* Dark theme support */
+.dark-theme .inventory-modal {
+  background: #111217;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .inventory-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .inventory-header .title {
+  color: #ddd;
+}
+
+.dark-theme .inventory-body {
+  background: transparent;
+}
+
+.dark-theme .inventory-item-card {
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.8), rgba(40, 40, 50, 0.6));
+  border: 1px solid rgba(255, 105, 180, 0.1);
+}
+
+.dark-theme .inventory-item-name {
+  color: #fff;
+}
+
+.dark-theme .inventory-item-count {
+  color: #bbb;
+}
+
+.dark-theme .inventory-header .btn-close {
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.06);
+  color: #222;
+  transition: all 0.2s;
+}
+
+.btn-close:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-weight: 800;
+  color: #222;
+}
+
+.item-count {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.btn-use {
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.btn-use:hover {
+  background: #ff1493;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.muted {
+  color: #888;
+  padding: 8px;
+}
+
+/* Close button and theme adjustments */
+.inventory-header .btn-close {
+  background: rgba(0, 0, 0, 0.06);
+  color: #222;
+}
+
+/* Modal background for dark theme */
+.dark-theme .inventory-modal {
+  background: #111217;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .inventory-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .inventory-header .title {
+  color: #ddd;
+}
+
+.dark-theme .inventory-body {
+  background: transparent;
+}
+
+.dark-theme .inventory-item {
+  background: linear-gradient(180deg, #0f0f12, #141416);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .item-name {
+  color: #fff;
+}
+
+.dark-theme .item-count {
+  color: #bbb;
+}
+
+.dark-theme .inventory-header .btn-close {
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dark-theme .inventory-item-card {
+  background: linear-gradient(180deg, #0f0f12, #141416);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.dark-theme .inventory-item-card.is-new {
+  border: 2px solid #ff69b4;
+  background: linear-gradient(180deg, rgba(255, 105, 180, 0.35), rgba(255, 105, 180, 0.15));
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.6), inset 0 0 20px rgba(255, 105, 180, 0.25);
+  animation: new-item-pulse-dark 1.5s ease-in-out infinite, new-item-glow-dark 2.5s ease-in-out infinite, new-item-shine 1s ease-in-out infinite;
+}
+
+@keyframes new-item-pulse-dark {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.6), inset 0 0 20px rgba(255, 105, 180, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(255, 105, 180, 0.8), inset 0 0 28px rgba(255, 105, 180, 0.35);
+  }
+}
+
+@keyframes new-item-glow-dark {
+  0%, 100% {
+    background: linear-gradient(180deg, rgba(255, 105, 180, 0.35), rgba(255, 105, 180, 0.15));
+  }
+  50% {
+    background: linear-gradient(180deg, rgba(255, 105, 180, 0.5), rgba(255, 105, 180, 0.25));
+  }
+}
+
+.dark-theme .inventory-item-name {
+  color: #fff;
+}
+
+.dark-theme .inventory-item-count {
+  color: #bbb;
+}
+
+.dark-theme .inventory-controls {
+  color: #bbb;
+}
+
+.dark-theme .small-filter-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #bbb;
+}
+
+.dark-theme .small-filter-btn.active {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: #fff;
+  border: none;
+}
+
+.dark-theme select {
+  background: #1a1a1e;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark-theme .sort-filter-select {
+  background: #1a1a1e !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark-theme .btn-reset {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+/* Light theme improvements for better button visibility */
+.light-theme .messenger-toggle.compact {
+  border: 2px solid #ff69b4;
+  background: rgba(255, 105, 180, 0.08);
+  color: #ff69b4;
+}
+
+.light-theme select {
+  border: 1px solid rgba(255, 105, 180, 0.3) !important;
+  background: #fff !important;
+  color: #333 !important;
+}
+
+.dark-theme .btn-reset:hover {
+  background: #dc2626;
+  color: #fff;
+}
+
+.dark-theme .muted {
+  color: #666;
+}

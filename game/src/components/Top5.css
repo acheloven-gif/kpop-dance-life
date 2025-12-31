@@ -1,0 +1,330 @@
+.top-5-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.top-5-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-5-header h3 {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.info-icon {
+  cursor: help;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ff69b4;
+  border: 1.5px solid #ff69b4;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.3s ease;
+  user-select: none;
+  margin-left: 4px;
+  flex-shrink: 0;
+  margin-top: -2px;
+}
+
+.info-icon:hover {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* New SVG-based info icon */
+.info-icon-component {
+  cursor: help;
+  color: #ff69b4;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.info-icon-component:hover {
+  color: #ff1493;
+  transform: scale(1.1);
+}
+
+/* Style for text-based info indicator */
+.info-text {
+  font-size: 12px;
+  font-weight: bold;
+  color: #ff69b4;
+  cursor: help;
+  transition: all 0.3s ease;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.relationship-inline {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: inline-block;
+  border: 1px solid;
+}
+
+/* Relationship status colors */
+.relationship-inline.rel-stranger {
+  background: rgba(155, 155, 155, 0.1);
+  color: #666;
+  border-color: rgba(155, 155, 155, 0.2);
+}
+
+.relationship-inline.rel-acquaintance {
+  background: rgba(251, 146, 60, 0.1);
+  color: #fb923c;
+  border-color: rgba(251, 146, 60, 0.2);
+}
+
+.relationship-inline.rel-friend {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.dark-theme .relationship-inline.rel-stranger {
+  color: #999;
+  background: rgba(155, 155, 155, 0.08);
+  border-color: rgba(155, 155, 155, 0.15);
+}
+
+.dark-theme .relationship-inline.rel-acquaintance {
+  color: #fb923c;
+  background: rgba(251, 146, 60, 0.08);
+  border-color: rgba(251, 146, 60, 0.15);
+}
+
+.dark-theme .relationship-inline.rel-friend {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.15);
+}
+
+.info-text:hover {
+  color: #ff1493;
+  transform: scale(1.1);
+}
+
+
+
+/* Old tooltip styles - keeping for backward compatibility if needed */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-trigger {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip-text {
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.light-theme .tooltip-text {
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+}
+
+.tooltip-text::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+.light-theme .tooltip-text::after {
+  border-top-color: rgba(0, 0, 0, 0.85);
+}
+
+.top-5-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.light-theme .top-5-item {
+  background: rgba(255, 105, 180, 0.05);
+}
+
+.dark-theme .top-5-item {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.top-5-item:hover {
+  background: rgba(255, 105, 180, 0.15);
+  transform: translateX(5px);
+}
+
+.item-rank {
+  min-width: 30px;
+  text-align: center;
+  font-weight: 700;
+  color: #ff69b4;
+  font-size: 13px;
+}
+
+.item-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #ff69b4;
+}
+
+/* Medal frames for top-3 */
+.item-avatar.medal-gold {
+  border-radius: 50%;
+  border: 3px solid #ffd700;
+  box-shadow: 0 6px 18px rgba(255, 215, 0, 0.18), 0 0 0 4px rgba(255, 215, 0, 0.08) inset;
+}
+.item-avatar.medal-silver {
+  border-radius: 50%;
+  border: 3px solid #c0c0c0;
+  box-shadow: 0 6px 18px rgba(192,192,192,0.12), 0 0 0 4px rgba(192,192,192,0.06) inset;
+}
+.item-avatar.medal-bronze {
+  border-radius: 50%;
+  border: 3px solid #cd7f32;
+  box-shadow: 0 6px 18px rgba(205,127,50,0.12), 0 0 0 4px rgba(205,127,50,0.06) inset;
+}
+
+.item-info {
+  flex: 1;
+  min-width: 0;
+  font-size: 11px;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.item-name {
+  font-weight: 600;
+  color: inherit;
+
+.dark-theme .item-name { color: #ff69b4; }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-team {
+  font-size: 10px;
+  color: #ff69b4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-stats {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 10px;
+  color: #888;
+  align-items: center;
+}
+
+.item-stats .team-style-tag {
+  font-size: 10px;
+  padding: 2px 6px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dark-theme .item-stats {
+  color: #aaa;
+}
+
+.item-stats span {
+  white-space: nowrap;
+}
+
+/* support stacked skill rendering (F/M on separate lines) */
+.member-skills.stacked, .member-skill.stacked {
+  white-space: pre-line;
+  line-height: 1.2;
+}
+
+/* StatusBadges override for Top5 compact display */
+.top-5-item .status-badges {
+  gap: 4px;
+}
+
+.top-5-item .status-badges-compact {
+  gap: 4px;
+}
+
+.top-5-item .badge-inner {
+  padding: 4px 8px;
+  font-size: 10px;
+  gap: 4px;
+}
+
+.top-5-item .badge-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.top-5-item .badge-value {
+  font-size: 9px;
+}
+
+/* Leader crown inline */
+.leader-crown-inline {
+  margin-left: 6px;
+  font-size: 14px;
+  line-height: 1;
+  color: gold;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.12s ease, color 0.12s ease;
+}
+.leader-crown-inline:hover {
+  transform: translateY(-2px) scale(1.05);
+  color: #ffdf00;
+  cursor: default;
+}

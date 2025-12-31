@@ -1,0 +1,326 @@
+.npc-gift-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Шкала отношений */
+.relationship-section {
+  padding: 12px;
+  background: rgba(255, 105, 180, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+.relationship-header {
+  margin-bottom: 8px;
+}
+
+.relationship-label {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.relationship-bar-container {
+  position: relative;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.relationship-bar-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.relationship-bar-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: #000;
+  font-size: 12px;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+}
+
+.relationship-tiers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  font-size: 11px;
+}
+
+.tier {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.3s ease;
+}
+
+.tier-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tier-label {
+  color: #666;
+  font-size: 10px;
+}
+
+/* Подарки */
+.gifts-section {
+  padding: 12px;
+  background: rgba(135, 206, 250, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(135, 206, 250, 0.2);
+}
+
+.gifts-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.gift-card {
+  padding: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  font-size: 11px;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gift-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.gift-card.matched {
+  border-color: #FF8C00;
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(255, 140, 0, 0.05));
+}
+
+.gift-card.unmatched {
+  border-color: #999;
+  background: rgba(200, 200, 200, 0.05);
+}
+
+.gift-name {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.gift-bonus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.bonus-matched {
+  color: #FF8C00;
+  font-weight: bold;
+}
+
+.bonus-unmatched {
+  color: #666;
+  font-weight: bold;
+}
+
+.gift-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #FF8C00;
+  color: white;
+  font-size: 9px;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* Подтверждение подарка */
+.gift-confirmation {
+  padding: 12px;
+  background: rgba(144, 238, 144, 0.08);
+  border: 1px solid rgba(50, 205, 50, 0.3);
+  border-radius: 6px;
+}
+
+.gift-selected {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gift-selected h5 {
+  margin: 0;
+  font-size: 13px;
+  color: #333;
+}
+
+.gift-description {
+  margin: 0;
+  font-size: 11px;
+  color: #666;
+  font-style: italic;
+}
+
+.gift-bonus-display {
+  padding: 8px;
+  border-radius: 4px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bonus-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.bonus-info.matched {
+  color: #FF8C00;
+}
+
+.bonus-info.unmatched {
+  color: #666;
+}
+
+.bonus-label {
+  font-weight: 500;
+}
+
+.bonus-value {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.confirmation-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-confirm,
+.btn-cancel-gift {
+  flex: 1;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-confirm {
+  background: #32CD32;
+  color: white;
+}
+
+.btn-confirm:hover {
+  background: #2ab41f;
+}
+
+.btn-cancel-gift {
+  background: #ddd;
+  color: #333;
+}
+
+.btn-cancel-gift:hover {
+  background: #ccc;
+}
+
+/* Информация о механике */
+.mechanics-info {
+  padding: 12px;
+  background: rgba(255, 165, 0, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 165, 0, 0.2);
+  font-size: 11px;
+}
+
+.mechanics-info h4 {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+}
+
+.info-list {
+  margin: 0;
+  padding-left: 18px;
+  list-style: none;
+}
+
+.info-list li {
+  margin: 4px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-list .bonus {
+  color: #32CD32;
+  font-weight: bold;
+}
+
+.info-list .penalty {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+/* Тёмная тема */
+
+.dark-theme .gift-card {
+  background: rgba(50, 50, 60, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .gift-name {
+  color: #e0e0e0;
+}
+
+.dark-theme .gift-description {
+  color: #aaa;
+}
+
+.dark-theme .gift-selected h5 {
+  color: #e0e0e0;
+}
+
+.dark-theme .gift-bonus-display {
+  background: rgba(30, 30, 40, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 600px) {
+  .relationship-tiers {
+    grid-template-columns: 1fr;
+  }
+
+  .gifts-list {
+    grid-template-columns: 1fr;
+  }
+
+  .mechanics-info {
+    font-size: 10px;
+  }
+}

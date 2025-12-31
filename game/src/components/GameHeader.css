@@ -1,0 +1,667 @@
+
+.game-header.gradient-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0 5px 0;
+  background: linear-gradient(135deg, rgba(255,105,180,0.15) 0%, rgba(255,20,147,0.15) 50%, rgba(255,105,180,0.15) 100%);
+  border-radius: 0 0 18px 18px;
+  border: none;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 16px 0 rgba(233,75,180,0.08);
+  min-height: 63px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(2px);
+  overflow: visible;
+}
+
+/* When animation is enabled, keep the same gradient background */
+.game-header.gradient-header.animation-on {
+  background: linear-gradient(135deg, rgba(255,105,180,0.15) 0%, rgba(255,20,147,0.15) 50%, rgba(255,105,180,0.15) 100%);
+}
+
+.light-theme .game-header.gradient-header {
+  background: linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #ff69b4 100%);
+  box-shadow: 0 2px 16px 0 rgba(233,75,180,0.15);
+}
+
+/* Ensure gradient header appears in dark theme too (pink stripe) */
+.dark-theme .game-header.gradient-header {
+  background: linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #ff69b4 100%);
+  box-shadow: 0 2px 16px 0 rgba(233,75,180,0.12);
+}
+
+.light-theme .game-header {
+  background: #ffffff;
+  border-color: rgba(255, 105, 180, 0.2);
+}
+
+.light-theme .btn-icon {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  border-color: white;
+}
+
+.light-theme .btn-icon:hover {
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+}
+
+.light-theme .speed-btn {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  border-color: white;
+  color: white;
+}
+
+.light-theme .speed-icon {
+  color: white !important;
+}
+
+.light-theme .speed-btn:hover .speed-icon {
+  color: #ff1493;
+}
+
+.dark-theme .game-header {
+  background: #2a2a2a;
+  border-color: rgba(255, 105, 180, 0.15);
+}
+
+
+.date-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.date-labels {
+  display: flex;
+  gap: 35px;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 3px;
+  letter-spacing: 0.5px;
+}
+.date-values {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  justify-content: center;
+}
+/* Small calendar countdown under the main timer */
+.calendar-countdown {
+  font-size: 12px;
+  color: rgba(255,255,255,0.9);
+  margin-top: 6px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.date-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  min-width: 24px;
+  text-align: center;
+  line-height: 1;
+  display: inline-block;
+  padding: 4px 8px;
+  background: transparent;
+  border-radius: 4px;
+}
+.date-slash {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 400;
+  margin: 0 2px;
+}
+.date-slash {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 400;
+  margin: 0 4px;
+}
+
+
+.header-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  overflow: visible;
+  position: relative;
+  z-index: 1000;
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  font-size: 18px;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon:hover {
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+  transform: scale(1.05);
+}
+
+.btn-icon.paused {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+}
+
+.btn-icon.restart-btn.paused {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+}
+
+/* Save button in header - same as restart button */
+.save-btn-header {
+  /* inherits all btn-icon styles */
+}
+
+.speed-buttons {
+  display: flex;
+  gap: 5px;
+  background: transparent;
+  padding: 0;
+  border-radius: 8px;
+  position: relative;
+  overflow: visible;
+}
+
+.speed-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.speed-btn {
+  position: relative;
+}
+
+.speed-btn .speed-text {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff1493;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: 1px solid white;
+  min-width: 16px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.speed-btn:hover .speed-text {
+  background: #e0008a;
+}
+
+/* Remove old select styles */
+.speed-select {
+  display: none;
+}
+
+.speed-select option {
+  display: none;
+}
+
+/* Remove old dropdown styles */
+.speed-btn-wrapper {
+  display: none;
+}
+
+.speed-btn-old {
+  display: none;
+}
+
+.speed-icon {
+  display: none;
+}
+
+.speed-dropdown {
+  display: none;
+}
+
+.speed-option {
+  display: none;
+}
+
+
+/* Remove .header-right, .header-left, .header-center as not used in new layout */
+
+.theme-toggle {
+  font-size: 20px;
+}
+
+.restart-btn {
+  font-size: 16px;
+}
+
+.restart-modal {
+  border-color: #ff69b4 !important;
+  max-width: 400px;
+  width: 90%;
+}
+
+.restart-modal .modal-header {
+  border-bottom-color: #ff69b4 !important;
+}
+
+.restart-modal .modal-header h3 {
+  color: #ff69b4 !important;
+}
+
+.restart-modal .modal-body p {
+  margin: 8px 0;
+  text-align: center;
+  color: #333;
+}
+
+.dark-theme .restart-modal .modal-body p {
+  color: #f5f3f0;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: inherit;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  width: 90%;
+}
+
+.modal-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #ff69b4;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #ff69b4;
+}
+
+.modal-body {
+  margin-bottom: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.btn-cancel,
+.btn-confirm {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-cancel {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+
+.btn-cancel:hover {
+  background-color: #cbd5e0;
+}
+
+.btn-confirm {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+}
+
+.btn-confirm:hover {
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+}
+
+.light-theme .modal {
+  background-color: #ffffff;
+}
+
+.dark-theme .modal {
+  background-color: #2a2a2a;
+}
+
+@media (max-width: 1000px) {
+  .game-header {
+    justify-content: center;
+  }
+
+  .header-left,
+  .header-center,
+  .header-right {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+/* Seasonal Animation Particles in Header */
+.game-header.gradient-header {
+  overflow: hidden;
+}
+
+.header-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.header-particles.hidden {
+  display: none;
+}
+
+/* Leaf animation */
+.header-particles.autumn .leaf-yellow {
+  position: absolute;
+  top: -10px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500);
+  border-radius: 0 100% 0 100%;
+  opacity: 0.5;
+  animation: headerFallLeaf linear infinite;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.header-particles.autumn .leaf-red {
+  position: absolute;
+  top: -10px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 30% 30%, #FF4444, #DC143C);
+  border-radius: 0 100% 0 100%;
+  opacity: 0.5;
+  animation: headerFallLeaf linear infinite;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.header-particles.autumn .leaf-orange {
+  position: absolute;
+  top: -10px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 30% 30%, #FF8C00, #FFB84D);
+  border-radius: 0 100% 0 100%;
+  opacity: 0.5;
+  animation: headerFallLeaf linear infinite;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+/* Autumn - Raindrop animation */
+.header-particles.autumn .raindrop {
+  position: absolute;
+  top: -10px;
+  width: 5px;
+  height: 10px;
+  background: radial-gradient(ellipse at 40% 40%, rgba(100, 150, 200, 0.8), rgba(50, 100, 150, 0.6));
+  border-radius: 50% 50% 50% 0;
+  opacity: 0.6;
+  animation: headerFallRaindrop linear infinite;
+  animation-duration: 2.8s;
+  animation-timing-function: linear;
+  transform-origin: center center;
+}
+
+@keyframes headerFallLeaf {
+  0% {
+    top: -10px;
+    opacity: 0;
+    transform: rotate(0deg) translateX(0);
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 200px;
+    opacity: 0;
+    transform: rotate(360deg) translateX(20px);
+  }
+}
+
+/* Snowflake animation */
+.header-particles.winter .snowflake {
+  position: absolute;
+  top: -10px;
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  opacity: 0.6;
+  animation: headerFallSnow linear infinite;
+  box-shadow: none;
+}
+
+.header-particles.winter .white-circle {
+  position: absolute;
+  top: -10px;
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  opacity: 0.5;
+  animation: headerFallSnow linear infinite;
+  box-shadow: none;
+}
+
+.header-particles.winter .snowflake:nth-child(3n) {
+  width: auto;
+  height: auto;
+}
+
+@keyframes headerFallSnow {
+  0% {
+    top: -10px;
+    opacity: 0;
+    transform: translateX(0);
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 200px;
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+/* Spring - Raindrop animation */
+.header-particles.spring .raindrop {
+  position: absolute;
+  top: -10px;
+  width: 5px;
+  height: 10px;
+  background: radial-gradient(ellipse at 40% 40%, rgba(100, 200, 255, 0.9), rgba(50, 150, 200, 0.7));
+  border-radius: 50% 50% 50% 0;
+  opacity: 0.7;
+  animation: headerFallRaindrop linear infinite;
+  animation-duration: 2.5s;
+  animation-timing-function: linear;
+  transform-origin: center center;
+}
+
+@keyframes headerFallRaindrop {
+  0% {
+    top: -10px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    top: 300px;
+    opacity: 0;
+  }
+}
+
+/* Spring - Sakura petal animation */
+.header-particles.spring .sakura-petal {
+  position: absolute;
+  top: -10px;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 35% 35%, #FFB7C5, #FF69B4);
+  border-radius: 50% 0 50% 0;
+  opacity: 0.5;
+  animation: headerFloatSakura ease-in-out infinite;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  filter: drop-shadow(0 1px 2px rgba(255, 105, 180, 0.3));
+}
+
+.header-particles.spring .sakura-petal:nth-child(2n) {
+  background: radial-gradient(circle at 35% 35%, #FFC5D9, #FFB7C5);
+}
+
+@keyframes headerFloatSakura {
+  0% {
+    top: -10px;
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  10% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.5;
+    transform: rotate(180deg) translateX(30px);
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 300px;
+    opacity: 0;
+    transform: rotate(360deg) translateX(-30px);
+  }
+}
+
+/* Summer - Watermelon emoji animation */
+.header-particles.summer .summer-watermelon {
+  position: absolute;
+  top: -10px;
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  opacity: 0.5;
+  animation: headerFallFlower linear infinite;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  box-shadow: none;
+}
+
+/* Summer - Apple emoji animation */
+.header-particles.summer .summer-apple {
+  position: absolute;
+  top: -10px;
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  opacity: 0.5;
+  animation: headerFallFlower linear infinite;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  box-shadow: none;
+}
+
+/* Summer - Cherry emoji animation */
+.header-particles.summer .summer-cherry {
+  position: absolute;
+  top: -10px;
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  opacity: 0.5;
+  animation: headerFallBerry linear infinite;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  box-shadow: none;
+}
+
+@keyframes headerFallFlower {
+  0% {
+    top: -10px;
+    opacity: 0;
+    transform: translateX(0);
+  }
+  10% {
+    opacity: 0.5;
+  }
+  85% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 300px;
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes headerFallBerry {
+  0% {
+    top: -10px;
+    opacity: 0;
+    transform: scale(1);
+  }
+  10% {
+    opacity: 0.5;
+  }
+  85% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 300px;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+

@@ -1,0 +1,557 @@
+.ratings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+}
+
+.rating-tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid #ff69b4;
+  padding-bottom: 10px;
+}
+
+.rating-tab-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 2px solid #ff69b4;
+  color: #ff69b4;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.3s;
+}
+
+.rating-tab-btn:hover {
+  background-color: rgba(255, 105, 180, 0.2);
+}
+
+.rating-tab-btn.active {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  border-color: #ff1493;
+}
+
+.ratings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.ratings-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ratings-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.ratings-list::-webkit-scrollbar-thumb {
+  background: #ff69b4;
+  border-radius: 3px;
+}
+
+.rating-header {
+  display: grid;
+  grid-template-columns: 50px 45px 1fr 60px 150px 60px 70px 70px 90px;
+  gap: 16px;
+  padding: 10px 12px;
+  background: rgba(255, 105, 180, 0.15);
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #ff69b4;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.rating-row {
+  display: grid;
+  grid-template-columns: 50px 45px 1fr 60px 150px 60px 70px 70px 90px;
+  gap: 16px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  align-items: center;
+  font-size: 12px;
+  transition: all 0.3s;
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sortable:hover {
+  color: #ff1493;
+}
+
+.sort-icon {
+  display: inline-block;
+  font-size: 10px;
+  color: rgba(255, 105, 180, 0.5);
+  transition: color 0.2s;
+}
+
+.sortable:hover .sort-icon {
+  color: #ff1493;
+}
+
+.col-style {
+  text-align: center;
+}
+
+.member-skills {
+  font-size: 12px;
+  color: #666;
+}
+
+.dark-theme .rating-row {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rating-row:hover {
+  background: rgba(255, 105, 180, 0.15);
+  transform: translateX(4px);
+}
+
+.dark-theme .rating-row:hover {
+  background: rgba(255, 105, 180, 0.1);
+}
+
+.col-rank {
+  font-weight: 700;
+  color: #ff69b4;
+  text-align: center;
+}
+
+.col-avatar {
+  display: flex;
+  justify-content: center;
+}
+
+.col-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff69b4;
+}
+
+.avatar-wrap{position:relative;display:inline-block}
+.leader-crown{position:absolute;left:50%;transform:translateX(-50%);top:-8px;pointer-events:none}
+
+/* Medal avatars for top-3 in ratings with enhanced styling */
+.rating-row .col-avatar img.medal-gold {
+  border: 3px solid #ffd700;
+  box-shadow: 0 6px 18px rgba(255, 215, 0, 0.28), inset 0 0 8px rgba(255, 215, 0, 0.15), 0 0 0 2px #fff;
+}
+
+.rating-row .col-avatar img.medal-silver {
+  border: 3px solid #c0c0c0;
+  box-shadow: 0 6px 18px rgba(192,192,192,0.22), inset 0 0 8px rgba(192,192,192,0.1), 0 0 0 2px #fff;
+}
+
+.rating-row .col-avatar img.medal-bronze {
+  border: 3px solid #cd7f32;
+  box-shadow: 0 6px 18px rgba(205,127,50,0.22), inset 0 0 8px rgba(205,127,50,0.1), 0 0 0 2px #fff;
+}
+
+.col-name {
+  font-weight: 600;
+  color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-name .link-button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* ensure link-button is purely inline text, not a rounded icon */
+.col-name .link-button{display:inline-block;border-radius:0;padding-left:0;padding-right:0}
+
+.col-name .link-button:hover {
+  color: #ff1493;
+}
+
+.dark-theme .col-name .link-button {
+  color: #fff;
+}
+
+.dark-theme .col-name .link-button:hover {
+  color: #fff;
+}
+
+/* Center the team column header to align with its values */
+.rating-header .col-team { text-align: center; display: flex; justify-content: center; align-items: center; }
+.rating-header .col-rating { text-align: center; display: flex; justify-content: center; align-items: center; }
+.rating-header .col-reputation { text-align: center; display: flex; justify-content: center; align-items: center; }
+.rating-header .col-fskill { text-align: center; display: flex; justify-content: center; align-items: center; }
+.rating-header .col-mskill { text-align: center; display: flex; justify-content: center; align-items: center; }
+.rating-header .col-leader { text-align: center; display: flex; justify-content: center; align-items: center; }
+.rating-header .col-members { text-align: center; display: flex; justify-content: center; align-items: center; }
+.rating-header .col-skill { text-align: center; display: flex; justify-content: center; align-items: center; }
+
+.col-leader {
+  font-size: 11px;
+  color: #ff69b4;
+  text-align: center;
+  min-width: 50px;
+}
+
+.col-team {
+  font-size: 11px;
+  color: #ff69b4;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-rating {
+  font-weight: 700;
+  color: #ff69b4;
+  text-align: center;
+}
+
+.col-members {
+  text-align: center;
+}
+
+.col-skill {
+  text-align: center;
+}
+
+.col-style {
+  text-align: center;
+}
+
+.col-avatar {
+  display: flex;
+  justify-content: center;
+}
+
+.col-name {
+  font-weight: 600;
+  color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  padding: 0 4px;
+}
+
+.col-team {
+  font-size: 11px;
+  color: #ff69b4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.col-rating {
+  font-weight: 700;
+  color: #ff69b4;
+  text-align: center;
+}
+
+.col-fskill {
+  text-align: center;
+}
+
+.col-mskill {
+  text-align: center;
+}
+
+.col-reputation {
+  text-align: center;
+}
+
+.col-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff69b4;
+}
+
+.rating-row .col-avatar img.medal-gold {
+  border: 3px solid #ffd700;
+  box-shadow: 0 6px 18px rgba(255, 215, 0, 0.28), inset 0 0 8px rgba(255, 215, 0, 0.15), 0 0 0 2px #fff;
+}
+
+.rating-row .col-avatar img.medal-silver {
+  border: 3px solid #c0c0c0;
+  box-shadow: 0 6px 18px rgba(192,192,192,0.22), inset 0 0 8px rgba(192,192,192,0.1), 0 0 0 2px #fff;
+}
+
+.rating-row .col-avatar img.medal-bronze {
+  border: 3px solid #cd7f32;
+  box-shadow: 0 6px 18px rgba(205,127,50,0.22), inset 0 0 8px rgba(205,127,50,0.1), 0 0 0 2px #fff;
+}
+
+.col-members {
+  text-align: center;
+}
+
+.col-skill {
+  text-align: center;
+}
+
+.col-style {
+  text-align: center;
+}
+
+.member-skills {
+  font-size: 12px;
+  color: #666;
+}
+
+@media (max-width: 1200px) {
+  .rating-header,
+  .rating-row {
+    gap: 8px;
+  }
+
+  .col-avatar img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .col-name,
+  .col-team,
+  .col-style {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rating-header,
+  .rating-row {
+    grid-template-columns: 35px 35px 80px auto auto;
+    gap: 6px;
+    padding: 6px 8px;
+  }
+
+  .col-rank {
+    font-size: 10px;
+  }
+
+  .col-avatar img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .col-stats {
+    display: none;
+  }
+
+  .col-name {
+    font-size: 11px;
+  }
+
+  .col-rating {
+    font-size: 12px;
+  }
+}
+
+/* NPC Statuses Section */
+.npc-statuses-section {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(255, 105, 180, 0.08);
+  border-radius: 12px;
+  border-top: 2px solid #ff69b4;
+}
+
+.npc-statuses-section h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #ff69b4;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+.npc-statuses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.npc-status-card {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 105, 180, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dark-theme .npc-status-card {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.light-theme .npc-status-card {
+  background: rgba(255, 105, 180, 0.04);
+}
+
+.npc-status-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 105, 180, 0.3);
+  background: rgba(255, 105, 180, 0.1);
+}
+
+.npc-status-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #ff69b4;
+  flex-shrink: 0;
+}
+
+.npc-status-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.npc-status-name {
+  font-weight: 700;
+  color: #ff69b4;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .npc-statuses-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Team badges and animations */
+.team-badge-applied {
+  display: inline-block;
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 8px;
+  box-shadow: 0 2px 8px rgba(74, 222, 128, 0.25);
+}
+
+.skill-risk-warning {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  margin-left: 8px;
+}
+
+.skill-risk-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 12px;
+  position: relative;
+}
+
+.skill-risk-icon:hover::after {
+  content: 'Могут отказать из-за низкого уровня';
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ef4444;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.btn-apply {
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+}
+
+.btn-apply:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 105, 180, 0.3);
+}
+
+.btn-apply:active {
+  transform: scale(0.98);
+}
+
+.btn-apply.disabled {
+  opacity: 0.6;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.btn-apply.sending {
+  animation: pulse-send 0.6s ease-in-out;
+}
+
+@keyframes pulse-send {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+

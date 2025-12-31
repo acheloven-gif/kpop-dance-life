@@ -1,0 +1,582 @@
+/* GameEndScreen.css */
+
+.game-end-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.game-end-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  color: #e0e0e0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.end-screen-container {
+  width: 90%;
+  max-width: 900px;
+  height: 85vh;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.end-screen-content {
+  flex: 1;
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.end-screen-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.end-screen-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.end-screen-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.end-screen-title {
+  font-size: 48px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff6b9d 0%, #ff9cce 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.end-screen-subtitle {
+  font-size: 24px;
+  color: #b8b8d1;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.end-screen-text {
+  font-size: 18px;
+  color: #d0d0d0;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  max-width: 600px;
+}
+
+.end-screen-text strong {
+  color: #ff6b9d;
+  font-weight: 700;
+}
+
+/* Intro Screen */
+.intro-screen {
+  justify-content: center;
+}
+
+.end-screen-stats-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ff6b9d;
+}
+
+/* Projects Screen */
+
+.project-card {
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(255, 156, 206, 0.05) 100%);
+  border: 2px solid rgba(255, 107, 157, 0.3);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.project-card-label {
+  font-size: 12px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.project-card-title {
+  font-size: 24px;
+  color: #ff6b9d;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.project-card-meta {
+  font-size: 14px;
+  color: #b8b8d1;
+}
+
+/* Expenses Screen */
+
+.expenses-breakdown {
+  width: 100%;
+  margin-top: 30px;
+  max-width: 600px;
+}
+
+.expense-item {
+  display: grid;
+  grid-template-columns: 150px 1fr 100px;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.expense-category {
+  font-size: 14px;
+  color: #d0d0d0;
+  font-weight: 600;
+}
+
+.expense-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.expense-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b9d 0%, #ff9cce 100%);
+  border-radius: 4px;
+  animation: fillBar 0.8s ease-out;
+}
+
+@keyframes fillBar {
+  from {
+    width: 0 !important;
+  }
+}
+
+.expense-amount {
+  font-size: 14px;
+  color: #ff6b9d;
+  font-weight: 700;
+  text-align: right;
+}
+
+.expense-highlight {
+  background: rgba(255, 107, 157, 0.1);
+  border-left: 4px solid #ff6b9d;
+  padding: 15px 20px;
+  margin-top: 30px;
+  border-radius: 4px;
+  color: #d0d0d0;
+}
+
+.expense-highlight strong {
+  color: #ff6b9d;
+}
+
+/* Teams Screen */
+.team-card {
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(255, 156, 206, 0.05) 100%);
+  border: 2px solid rgba(255, 107, 157, 0.3);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.team-card-label {
+  font-size: 12px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.team-card-title {
+  font-size: 24px;
+  color: #ff6b9d;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.team-card-meta {
+  font-size: 14px;
+  color: #b8b8d1;
+}
+
+/* Festival Screen */
+.festival-screen {
+  justify-content: center;
+  align-items: center;
+}
+
+.festival-count {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.festival-number {
+  font-size: 120px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff6b9d 0%, #ff9cce 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.festival-label {
+  font-size: 24px;
+  color: #b8b8d1;
+  margin-top: 10px;
+}
+
+/* NPCs Screen */
+.npc-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.npc-stat-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 30px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.npc-stat-number {
+  font-size: 48px;
+  font-weight: 900;
+  color: #ff6b9d;
+  line-height: 1;
+}
+
+.npc-stat-label {
+  font-size: 13px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+/* Final Screen */
+.final-screen {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.final-message {
+  font-size: 36px;
+  color: #ff6b9d;
+  font-weight: 700;
+  margin-top: 60px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Navigation */
+.end-screen-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 50px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 20px;
+}
+
+.end-screen-btn {
+  padding: 12px 24px;
+  background: rgba(255, 107, 157, 0.2);
+  border: 2px solid rgba(255, 107, 157, 0.5);
+  color: #ff6b9d;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.end-screen-btn:hover:not(:disabled) {
+  background: rgba(255, 107, 157, 0.3);
+  border-color: #ff6b9d;
+}
+
+.end-screen-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.prev-btn {
+  order: 1;
+}
+
+.next-btn {
+  order: 3;
+}
+
+.end-screen-progress {
+  order: 2;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.progress-dot.active {
+  background: #ff6b9d;
+  width: 24px;
+  border-radius: 5px;
+}
+
+.progress-dot.completed {
+  background: rgba(255, 107, 157, 0.6);
+}
+
+/* Actions */
+.end-screen-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  padding: 30px 50px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.end-screen-action-btn {
+  flex: 1;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.end-screen-action-btn.restart {
+  background: linear-gradient(135deg, #ff6b9d 0%, #ff9cce 100%);
+  color: #1a1a2e;
+}
+
+.end-screen-action-btn.restart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+}
+
+.end-screen-action-btn.continue {
+  background: rgba(255, 107, 157, 0.2);
+  border: 2px solid rgba(255, 107, 157, 0.5);
+  color: #ff6b9d;
+}
+
+.end-screen-action-btn.continue:hover {
+  background: rgba(255, 107, 157, 0.3);
+  border-color: #ff6b9d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .end-screen-content {
+    padding: 40px 25px;
+  }
+
+  .end-screen-title {
+    font-size: 36px;
+  }
+
+  .end-screen-text {
+    font-size: 16px;
+  }
+
+  .end-screen-nav,
+  .end-screen-actions {
+    padding: 20px 25px;
+  }
+
+  .end-screen-stats-preview,
+  .npc-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .expense-item {
+    grid-template-columns: 100px 1fr 80px;
+  }
+
+  .festival-number {
+    font-size: 80px;
+  }
+
+  .closest-npcs {
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .closest-npcs-title {
+    font-size: 14px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+  }
+
+  .npc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .npc-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(255, 156, 206, 0.05) 100%);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 107, 157, 0.2);
+  }
+
+  .npc-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 107, 157, 0.4);
+  }
+
+  .npc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .npc-name {
+    font-size: 16px;
+    color: #ff6b9d;
+    font-weight: 700;
+  }
+
+  .npc-relationship {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .npc-relationship.rel-friend {
+    background: rgba(74, 222, 128, 0.2);
+    color: #4ade80;
+  }
+
+  .npc-relationship.rel-acquaintance {
+    background: rgba(251, 146, 60, 0.2);
+    color: #fb923c;
+  }
+
+  .npc-empty {
+    color: #999;
+    font-style: italic;
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,300 @@
+.npc-met-overlay {
+  z-index: 11000;
+}
+
+.npc-met-modal {
+  width: 480px;
+  max-width: 90vw;
+  max-height: 85vh;
+  background: linear-gradient(135deg, #fff9f5, #fff5f9);
+  border: 2px solid #ff69b4;
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 10px 50px rgba(255, 105, 180, 0.3);
+  animation: slideInMeet 0.4s ease-out;
+}
+
+@keyframes slideInMeet {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.npc-met-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px;
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  border-bottom: none;
+  position: relative;
+}
+
+.npc-met-header .close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.npc-met-header .close:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.npc-met-title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+  flex: 1;
+  letter-spacing: 1px;
+}
+
+.npc-met-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+  max-height: calc(85vh - 120px);
+}
+
+.npc-met-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.npc-met-body::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 3px;
+}
+
+.npc-met-body::-webkit-scrollbar-thumb {
+  background: #ff69b4;
+  border-radius: 3px;
+}
+
+.npc-met-avatar-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.npc-met-avatar-wrapper {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 4px solid #ff69b4;
+  box-shadow: 0 8px 24px rgba(255, 105, 180, 0.2);
+  background: linear-gradient(135deg, #f0d9ff, #ffe5f0);
+}
+
+.npc-met-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.npc-met-info {
+  text-align: center;
+}
+
+.npc-met-name {
+  margin: 0;
+  font-size: 28px;
+  color: #ff69b4;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.npc-met-status {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-friend {
+  background: linear-gradient(135deg, #ffd966, #ffb84d);
+  color: #5a3b00;
+  box-shadow: 0 4px 12px rgba(255, 217, 102, 0.3);
+}
+
+.status-acquaintance {
+  background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+  color: #5b21b6;
+  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.3);
+}
+
+.npc-met-team,
+.npc-met-skill,
+.npc-met-behavior {
+  background: rgba(255, 105, 180, 0.08);
+  border: 1px solid rgba(255, 105, 180, 0.15);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.team-label,
+.skill-label,
+.behavior-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #ff69b4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.team-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.team-style {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.skill-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.skill-level {
+  font-size: 13px;
+  color: #666;
+}
+
+.behavior-type {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff69b4;
+  margin-bottom: 8px;
+}
+
+.behavior-description {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #444;
+  font-style: italic;
+}
+
+.npc-met-footer {
+  padding: 16px 24px;
+  background: #f5f5f5;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.btn-close-modal {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-close-modal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 105, 180, 0.4);
+}
+
+.btn-close-modal:active {
+  transform: translateY(0);
+}
+
+/* Dark theme support */
+.dark-theme .npc-met-modal {
+  background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+  border-color: #ff69b4;
+}
+
+.dark-theme .npc-met-name {
+  color: #ff92c2;
+}
+
+.dark-theme .npc-met-team,
+.dark-theme .npc-met-skill,
+.dark-theme .npc-met-behavior {
+  background: rgba(255, 105, 180, 0.1);
+  border-color: rgba(255, 105, 180, 0.2);
+}
+
+.dark-theme .team-name,
+.dark-theme .skill-value,
+.dark-theme .behavior-type {
+  color: #f5f3f0;
+}
+
+.dark-theme .team-style,
+.dark-theme .skill-level,
+.dark-theme .behavior-description {
+  color: #bbb;
+}
+
+.dark-theme .npc-met-footer {
+  background: #333;
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 480px) {
+  .npc-met-modal {
+    width: 95vw;
+    border-radius: 12px;
+  }
+
+  .npc-met-title {
+    font-size: 20px;
+  }
+
+  .npc-met-name {
+    font-size: 24px;
+  }
+
+  .npc-met-avatar-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+}

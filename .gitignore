@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+bower_components/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+bot/.env
+
+# Build outputs
+/dist
+/build
+game/dist
+bot/dist
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Temporary files
+.cache/
+temp/
+tmp/
+
+# OS
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/

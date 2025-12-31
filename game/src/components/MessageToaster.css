@@ -1,0 +1,94 @@
+.message-toaster {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.95), rgba(255, 20, 147, 0.95));
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 105, 180, 0.6);
+  max-width: 300px;
+  box-shadow: 0 8px 24px rgba(255, 105, 180, 0.3), 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.message-toaster.is-visible {
+  animation: toaster-slide-in 0.4s ease-out;
+}
+
+
+.message-toaster.is-hidden {
+  animation: toaster-slide-out-left 0.4s ease-in forwards !important;
+  pointer-events: none;
+}
+
+.message-toaster:hover {
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.98), rgba(255, 105, 180, 0.98));
+  box-shadow: 0 10px 28px rgba(255, 105, 180, 0.4), 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes toaster-slide-in {
+  from {
+    transform: translateY(380px) translateX(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes toaster-slide-out-left {
+  from {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0) translateX(-380px);
+    opacity: 0;
+  }
+}
+
+.toaster-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.toaster-sender {
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  opacity: 0.95;
+}
+
+.toaster-message {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+/* Dark theme adjustments */
+.dark-theme .message-toaster {
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.9), rgba(255, 20, 147, 0.9));
+  border-color: rgba(255, 105, 180, 0.5);
+  box-shadow: 0 8px 24px rgba(255, 105, 180, 0.25), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .message-toaster:hover {
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.95), rgba(255, 105, 180, 0.95));
+  box-shadow: 0 10px 28px rgba(255, 105, 180, 0.35), 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Light theme */
+.light-theme .message-toaster {
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.92), rgba(255, 20, 147, 0.92));
+  border-color: rgba(255, 105, 180, 0.7);
+}
+
+.light-theme .message-toaster:hover {
+  background: linear-gradient(135deg, rgba(255, 20, 147, 1), rgba(255, 105, 180, 1));
+}

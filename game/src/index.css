@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Light theme */
+body.light-theme {
+  background-color: #f5f3f0;
+  color: #1a1a1a;
+}
+
+/* Dark theme */
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #f5f3f0;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #ff69b4;
+  border: 2px solid #ff69b4;
+}
+
+.btn-secondary:hover {
+  background-color: #fff5f9;
+}
+
+body.dark-theme .btn-secondary:hover {
+  background-color: rgba(255, 105, 180, 0.1);
+}
+
+/* Slider */
+
+/* Small stepper buttons (plus/minus) — unified style used across project cards, cart, dialogs */
+.btn-qty, .btn-inc-training, .btn-dec-training {
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,105,180,0.22);
+  background: rgba(255,105,180,0.06);
+  color: #ff69b4;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.btn-qty:hover, .btn-inc-training:hover, .btn-dec-training:hover { background: rgba(255,105,180,0.12); border-color: rgba(255,105,180,0.4); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(255,105,180,0.12); }
+
+/* Shared button classes */
+.btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.btn-small { padding: 6px 10px; font-size: 13px; }
+.btn-outline-pink { background: transparent; color: #ff69b4; border-color: #ff69b4; }
+.btn-outline-pink:hover { background: rgba(255,105,180,0.08); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(255,105,180,0.08); }
+
+.qty-display, .controls .controls span, .train-count { margin: 0 10px; }
+
+/* Global confirm/cancel button styles used across modals */
+.btn-confirm {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+.btn-confirm:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,20,147,0.18); }
+
+.btn-cancel {
+  background: transparent;
+  color: #ff69b4;
+  border: 2px solid #ff69b4;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+.btn-cancel:hover { background: rgba(255,105,180,0.06); transform: translateY(-1px); }
+
+/* Slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 5px;
+  background: #e0e0e0;
+  outline: none;
+}
+
+body.dark-theme input[type="range"] {
+  background: #444;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ff69b4;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ff69b4;
+  cursor: pointer;
+  border: none;
+}
+
+/* Modal/Popup */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: inherit;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Global dark-theme modal fix: ensure modals use a solid dark background and avoid visual mid-square artifacts */
+.dark-theme .modal,
+.dark-theme .modal.card {
+  background: linear-gradient(135deg, #151516 0%, #19191b 100%) !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.7) !important;
+  color: #f5f3f0 !important;
+}
+
+/* Make modal inner areas consistent in dark theme */
+.dark-theme .modal-header,
+.dark-theme .modal-body,
+.dark-theme .modal-actions {
+  background: transparent !important;
+}
+
+/* Screen-reader only helper */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

@@ -1,0 +1,388 @@
+/* Status Badges Styles with Animations */
+
+.status-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.status-badges-compact {
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+}
+
+.status-badge {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.badge-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1.5px solid;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+  display: none;
+}
+
+.badge-label {
+  display: inline-block;
+}
+
+.badge-value {
+  font-size: 12px;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+/* ============================================
+   РЕПУТАЦИЯ - COLORS AND ANIMATIONS
+   ============================================ */
+
+.status-badge.reputation.rep-toxic {
+  --rep-color: #ef4444;
+}
+
+.status-badge.reputation.rep-normal {
+  --rep-color: #eab308;
+}
+
+.status-badge.reputation.rep-favorite {
+  --rep-color: #22c55e;
+}
+
+/* Репутация - основные стили */
+.status-badge.reputation .badge-inner {
+  background: var(--rep-color, #999);
+  border-color: var(--rep-color, #999);
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .status-badge.reputation .badge-inner {
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+}
+
+.status-badge.reputation:hover .badge-inner {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.status-badge.reputation.rep-toxic .badge-inner {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+.status-badge.reputation.rep-toxic:hover .badge-inner {
+  box-shadow: 0 0 28px rgba(239, 68, 68, 0.6);
+}
+
+.status-badge.reputation.rep-normal .badge-inner {
+  background: linear-gradient(135deg, #eab308, #ca8a04);
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.35);
+}
+
+.status-badge.reputation.rep-normal:hover .badge-inner {
+  box-shadow: 0 0 28px rgba(234, 179, 8, 0.5);
+}
+
+.status-badge.reputation.rep-favorite .badge-inner {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+.status-badge.reputation.rep-favorite:hover .badge-inner {
+  box-shadow: 0 0 28px rgba(34, 197, 94, 0.6);
+}
+
+/* ============================================
+   ПОПУЛЯРНОСТЬ - COLORS AND ANIMATIONS
+   ============================================ */
+
+.status-badge.popularity.pop-unknown {
+  --pop-color: #a3a3a3;
+}
+
+.status-badge.popularity.pop-known {
+  --pop-color: #fb923c;
+}
+
+.status-badge.popularity.pop-top {
+  --pop-color: #fef08a;
+}
+
+/* Популярность - Ноунейм - Пыльный серый с летающей пылью */
+.status-badge.popularity.pop-unknown .badge-inner {
+  background: linear-gradient(135deg, #a3a3a3, #787878);
+  border-color: #787878;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(163, 163, 163, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.status-badge.popularity.pop-unknown .badge-dot {
+  animation: dust-float 3s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+/* Популярность - Известный - Цвет рассвета с лучами */
+.status-badge.popularity.pop-known .badge-inner {
+  background: linear-gradient(135deg, #fb923c, #ea580c);
+  border-color: #ea580c;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  animation: sunrise-glow 4s ease-in-out infinite;
+}
+
+.status-badge.popularity.pop-known .badge-dot {
+  animation: sunrise-pulse 2.5s ease-in-out infinite;
+}
+
+.status-badge.popularity.pop-known:hover .badge-inner {
+  box-shadow: 0 0 30px rgba(251, 146, 60, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Популярность - Топовый - Божественный белый с перьями */
+.status-badge.popularity.pop-top .badge-inner {
+  background: linear-gradient(135deg, #fef08a, #fef3c7);
+  border-color: #fcd34d;
+  color: #78350f;
+  box-shadow: 0 0 25px rgba(254, 240, 138, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+}
+
+.status-badge.popularity.pop-top .badge-dot {
+  animation: divine-glow 2s ease-in-out infinite;
+  background-color: #fcd34d !important;
+  box-shadow: 0 0 8px #fcd34d;
+}
+
+.status-badge.popularity.pop-top:hover .badge-inner {
+  box-shadow: 0 0 35px rgba(254, 240, 138, 0.8), inset 0 0 12px rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   ОТНОШЕНИЕ - COLORS AND STYLES
+   ============================================ */
+
+.status-badge.relationship .badge-inner {
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+.status-badge.relationship.rel-stranger .badge-inner {
+  background: rgba(100, 100, 100, 0.2);
+  border-color: #888;
+  color: #999;
+}
+
+.status-badge.relationship.rel-acquaintance .badge-inner {
+  background: linear-gradient(135deg, rgba(251,146,60,0.12), rgba(251,146,60,0.08));
+  border-color: #fb923c;
+  color: #7a3f08;
+}
+
+.status-badge.relationship.rel-acquaintance .badge-dot {
+  background-color: #fb923c !important;
+}
+
+.status-badge.relationship.rel-friend .badge-inner {
+  background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(34,197,94,0.06));
+  border-color: #22c55e;
+  color: #14532d;
+  font-weight: 700;
+}
+
+.status-badge.relationship.rel-friend .badge-dot {
+  background-color: #22c55e !important;
+  animation: none;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* Базовый пульс для точки */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.85);
+  }
+}
+
+/* Летающая пыль для ноунейма */
+@keyframes dust-float {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    opacity: 0.8;
+    transform: translateY(-3px) translateX(2px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(2px) translateX(-1px);
+  }
+  75% {
+    opacity: 0.7;
+    transform: translateY(-2px) translateX(-2px);
+  }
+}
+
+/* Свечение рассвета */
+@keyframes sunrise-glow {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.1);
+  }
+}
+
+/* Пульс рассвета */
+@keyframes sunrise-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(0.8);
+    filter: brightness(1.2);
+  }
+}
+
+/* Божественное свечение */
+@keyframes divine-glow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+    box-shadow: 0 0 8px #fcd34d;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 0 16px #fcd34d;
+  }
+}
+
+/* Пульс любви */
+@keyframes love-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Луч солнца - дополнительная тонкая анимация */
+@keyframes sunray {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.8);
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1.2);
+  }
+}
+
+/* Перо - дополнительная анимация */
+@keyframes feather-float {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) rotateZ(0deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px) rotateZ(360deg);
+  }
+}
+
+/* Эффект перьев для топового статуса - добавить после бейджа */
+.status-badge.popularity.pop-top::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-radius: 20px;
+  animation: feather-float 4s ease-in-out infinite;
+}
+
+/* Dark theme адаптация */
+.dark-theme .status-badge.popularity.pop-known .badge-inner {
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.5), inset 0 0 10px rgba(255, 200, 100, 0.15);
+}
+
+.dark-theme .status-badge.popularity.pop-top .badge-inner {
+  box-shadow: 0 0 25px rgba(254, 240, 138, 0.5), inset 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.dark-theme .status-badge.popularity.pop-unknown .badge-inner {
+  box-shadow: 0 0 15px rgba(163, 163, 163, 0.3);
+}
+
+/* Compact mode */
+.status-badges-compact .status-badge {
+  margin: 0;
+}
+
+.status-badges-compact .badge-inner {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.status-badges-compact .badge-label {
+  display: inline-block;
+}
+
+.status-badges-compact .badge-value {
+  display: none;
+}
+
+.status-badges-compact .status-badge.relationship {
+  display: none;
+}
+
+/* Relationship badge compact styling */
+.status-badge.relationship.compact .badge-inner {
+  font-size: 11px;
+  padding: 4px 8px;
+}
+
+.status-badge.relationship.compact .badge-label {
+  font-size: 11px;
+}
