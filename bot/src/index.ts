@@ -193,7 +193,10 @@ bot.on('web_app_data', async (ctx: Context) => {
 
   if (ctx.webAppData?.data) {
     try {
-      const gameData = JSON.parse(ctx.webAppData.data);
+      const dataString = typeof ctx.webAppData.data === 'string' 
+        ? ctx.webAppData.data 
+        : JSON.stringify(ctx.webAppData.data);
+      const gameData = JSON.parse(dataString);
       console.log('[Bot] Game data:', gameData);
 
       // Handle the data (e.g., save to database, award badges, etc.)
