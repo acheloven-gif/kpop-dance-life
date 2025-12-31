@@ -160,7 +160,7 @@ bot.command('about', async (ctx: Context) => {
  * Callback query handler
  */
 bot.on('callback_query', async (ctx: Context) => {
-  const data = ctx.callbackQuery?.data;
+  const data = (ctx.callbackQuery as any)?.data;
 
   switch (data) {
     case 'stats':
@@ -290,7 +290,7 @@ async function start() {
       await bot.telegram.setWebhook(`${webhookUrl}/bot${TOKEN}`);
 
       app.post(`/bot${TOKEN}`, (req: Request, res: Response) => {
-        bot.handleUpdate(req.body, res).catch((err: any) => {
+        bot.handleUpdate(req.body, res as any).catch((err: any) => {
           console.error('[Bot] Webhook error:', err);
           res.status(500).send('Internal Server Error');
         });

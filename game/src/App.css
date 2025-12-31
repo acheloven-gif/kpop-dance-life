@@ -77,6 +77,34 @@
 
 @media (max-width: 768px) {
   .app {
-    padding: 10px;
+    padding: 8px;
+  }
+
+  .game-container {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 6px;
+  }
+
+  .game-container {
+    gap: 10px;
+  }
+
+  * {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 320px) {
+  .app {
+    padding: 4px;
+  }
+
+  .game-container {
+    gap: 8px;
   }
 }

@@ -821,13 +821,285 @@
   .reset-filters-btn {
     width: 100%;
   }
+
+  .main-tabs {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .tab-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .tab-content {
+    padding: 0;
+    margin-top: 0;
+    padding-right: 8px;
+  }
+
+  .active-projects-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-right: 8px;
+  }
+
+  .completed-list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-right: 8px;
+  }
+
+  .active-project-item {
+    margin-bottom: 12px;
+  }
 }
 
 @media (max-width: 480px) {
   .filters-grid {
     grid-template-columns: 1fr;
   }
+
+  .main-tabs {
+    padding: 10px;
+    gap: 10px;
+    border-radius: 12px;
+  }
+
+  .tab-buttons {
+    flex-direction: column;
+  }
+
+  .tab-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    border-radius: 8px;
+    margin-right: 0;
+    border: 2px solid #ff69b4;
+  }
+
+  .tab-btn.active {
+    border-radius: 8px;
+    border: 2px solid #ff1493;
+  }
+
+  .tab-buttons::after {
+    display: none;
+  }
+
+  .tab-content {
+    padding: 0;
+    margin-top: 0;
+    padding-right: 6px;
+  }
+
+  .tab-pane h2 {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .tab-pane p {
+    font-size: 13px;
+  }
+
+  .project-filters {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filters-grid {
+    gap: 8px;
+  }
+
+  .reset-filters-btn {
+    width: 100%;
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .active-projects-list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-right: 6px;
+  }
+
+  .completed-list {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-right: 6px;
+  }
+
+  .active-project-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+  }
+
+  .completed-item {
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .project-header h4 {
+    font-size: 13px;
+  }
+
+  .deadline {
+    padding: 3px 6px;
+    font-size: 11px;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+
+  .btn-accept {
+    padding: 8px 12px;
+    font-size: 13px;
+    width: 100%;
+  }
+
+  .project-footer .btn-abandon {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .training-controls {
+    gap: 8px;
+  }
+
+  .control-row label {
+    font-size: 12px;
+  }
+
+  .control-row .controls {
+    gap: 6px;
+  }
+
+  .control-row .controls button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .stat-value {
+    font-size: 16px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
 }
+
+@media (max-width: 370px) {
+  .main-tabs {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .tab-btn {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .tab-pane h2 {
+    font-size: 14px;
+  }
+
+  .project-filters {
+    gap: 8px;
+  }
+
+  .filters-grid {
+    gap: 6px;
+    grid-template-columns: 1fr;
+  }
+
+  .active-projects-list,
+  .completed-list {
+    gap: 8px;
+    padding-right: 4px;
+  }
+
+  .active-project-item,
+  .completed-item {
+    padding: 8px;
+  }
+
+  .project-header h4 {
+    font-size: 12px;
+  }
+
+  .btn-accept,
+  .project-footer .btn-abandon {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .deadline {
+    padding: 2px 5px;
+    font-size: 10px;
+  }
+
+  .control-row label {
+    font-size: 11px;
+  }
+
+  .control-row .controls button {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
+  .costume-amount-input {
+    width: 50px;
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+}
+
+/* Landscape mode optimizations */
+@media (max-height: 600px) and (orientation: landscape) {
+  .main-tabs {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .tab-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .tab-content {
+    max-height: 70vh;
+  }
+
+  .active-projects-list,
+  .completed-list {
+    gap: 10px;
+    max-height: 65vh;
+  }
+
+  .active-project-item {
+    margin-bottom: 8px;
+    padding: 8px;
+  }
+
+  .project-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .tab-pane h2 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+}
+
 
 /* Global team style tag visuals to match project tags */
 .team-style-tag {
