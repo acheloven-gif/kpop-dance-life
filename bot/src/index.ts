@@ -229,6 +229,13 @@ bot.catch((err: any, ctx: Context) => {
 });
 
 /**
+ * Root endpoint - redirect to game
+ */
+app.get('/', (_req: Request, res: Response) => {
+  res.redirect('/game');
+});
+
+/**
  * Express middleware to serve the game web app
  */
 app.get('/game', (_req: Request, res: Response) => {
@@ -312,6 +319,17 @@ async function start() {
     process.exit(1);
   }
 }
+
+/**
+ * 404 handler - catch all undefined routes
+ */
+app.use((_req: Request, res: Response) => {
+  res.status(404).json({
+    error: 'Not Found',
+    message: 'The requested resource does not exist',
+    path: _req.path,
+  });
+});
 
 // Graceful shutdown
 process.on('SIGINT', async () => {
