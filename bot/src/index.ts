@@ -290,10 +290,16 @@ async function start() {
       await bot.telegram.setWebhook(`${webhookUrl}/bot${TOKEN}`);
 
       app.post(`/bot${TOKEN}`, (req: Request, res: Response) => {
-        bot.handleUpdate(req.body, res as any).catch((err: any) => {
+        try {
+          bot.handleUpdate(req.body).catch((err: any) => {
+            console.error('[Bot] Webhook error:', err);
+            res.status(500).send('Internal Server Error');
+          });
+          res.status(200).send('OK');
+        } catch (err) {
           console.error('[Bot] Webhook error:', err);
           res.status(500).send('Internal Server Error');
-        });
+        }
       });
     } else {
       // Use polling in development
