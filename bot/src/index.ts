@@ -282,13 +282,9 @@ async function start() {
     });
 
     // Launch bot
-    if (NODE_ENV === 'production') {
-      // Use webhook in production
-      const webhookUrl = process.env.WEBHOOK_URL;
-      if (!webhookUrl) {
-        throw new Error('WEBHOOK_URL is required for production');
-      }
-
+    const webhookUrl = process.env.WEBHOOK_URL;
+    if (webhookUrl && NODE_ENV === 'production') {
+      // Use webhook in production if URL is provided
       console.log(`[Bot] Starting bot with webhook: ${webhookUrl}`);
       await bot.telegram.setWebhook(`${webhookUrl}/bot${TOKEN}`);
 
@@ -305,7 +301,7 @@ async function start() {
         }
       });
     } else {
-      // Use polling in development
+      // Use polling (default)
       console.log('[Bot] Starting bot with polling');
       bot.launch();
     }
