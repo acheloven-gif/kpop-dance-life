@@ -1,5 +1,5 @@
 import { Telegraf, Context } from 'telegraf';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -21,7 +21,7 @@ if (!TOKEN) {
 }
 
 // Initialize bot
-const bot = new Telegraf(TOKEN);
+const bot = new Telegraf<Context>(TOKEN);
 
 // Initialize Express server for serving the web app
 const app = express();
@@ -172,13 +172,11 @@ bot.on('callback_query', async (ctx: Context) => {
     case 'help':
       await ctx.reply(
         '📖 For detailed help, use /help command',
-        { reply_to_message_id: ctx.callbackQuery?.message?.message_id }
       );
       break;
     case 'about':
       await ctx.reply(
         '📝 For more information, use /about command',
-        { reply_to_message_id: ctx.callbackQuery?.message?.message_id }
       );
       break;
     default:
@@ -230,14 +228,14 @@ bot.catch((err: any, ctx: Context) => {
 /**
  * Express middleware to serve the game web app
  */
-app.get('/game', (req, res) => {
+app.get('/game', (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, '../../game/dist/index.html'));
 });
 
 /**
  * Health check endpoint
  */
-app.get('/health', (req, res) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
@@ -248,7 +246,7 @@ app.get('/health', (req, res) => {
 /**
  * Bot info endpoint
  */
-app.get('/api/bot-info', async (req, res) => {
+app.get('/api/bot-info', async (_req: Request, res: Response) => {
   try {
     const me = await bot.telegram.getMe();
     res.json({
@@ -291,8 +289,8 @@ async function start() {
       console.log(`[Bot] Starting bot with webhook: ${webhookUrl}`);
       await bot.telegram.setWebhook(`${webhookUrl}/bot${TOKEN}`);
 
-      app.post(`/bot${TOKEN}`, (req, res) => {
-        bot.handleUpdate(req.body, res).catch((err) => {
+      app.post(`/bot${TOKEN}`, (req: Request, res: Response) => {
+        bot.handleUpdate(req.body, res).catch((err: any) => {
           console.error('[Bot] Webhook error:', err);
           res.status(500).send('Internal Server Error');
         });
