@@ -101,7 +101,7 @@ const GameEndScreen: React.FC = () => {
       closestNPCs: closestNPCsList.map(n => ({
         id: n.id,
         name: n.name,
-        relationship: n.relationship,
+        relationship: n.relationship || 'stranger',
         avatar: n.avatar,
       })),
     });
