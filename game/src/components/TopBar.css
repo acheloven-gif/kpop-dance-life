@@ -1,0 +1,19 @@
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: #181c2a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  z-index: 101;
+  border-bottom: 1px solid #23263a;
+}
+.top-bar-time {
+  letter-spacing: 1px;
+}

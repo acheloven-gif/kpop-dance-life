@@ -9,16 +9,21 @@ import EventModal from './components/EventModal';
 import CompletedModal from './components/CompletedModal';
 import NPCMetModal from './components/NPCMetModal';
 import BirthdayReminder from './components/BirthdayReminder';
-import TelegramUserInfo from './components/TelegramUserInfo';
 import './App.css';
+
+import TopBar from './components/TopBar';
+import BottomNav from './components/BottomNav';
+import { useState } from 'react';
 
 function App() {
   const { state, gameEnded, npcMetData, setNpcMetData } = useGame();
-  const { isReady } = useTelegram();
+  const [activeTab, setActiveTab] = useState('main');
+  // Время для TopBar (можно заменить на игровое время)
+  const timerStr = `Год ${state.gameTime.year} Месяц ${state.gameTime.month} День ${state.gameTime.day}`;
 
   return (
     <div className={`app ${state.theme}-theme`}>
-      {/* AudioManager and EventModal mounted always so music/SFX persist across screens */}
+      <TopBar time={timerStr} />
       <AudioManager />
       <EventModal />
       <CompletedModal />
@@ -38,13 +43,12 @@ function App() {
       ) : (
         <>
           <div className="game-container">
-            {/* Telegram user info in header */}
-            {isReady && <TelegramUserInfo className="game-header-user-info" />}
-            <GameScreen />
+            <GameScreen activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
           <BirthdayReminder />
         </>
       )}
+      <BottomNav active={activeTab} onTab={setActiveTab} />
     </div>
   );
 }

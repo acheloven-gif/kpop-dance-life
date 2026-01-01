@@ -4,17 +4,15 @@ import playSFX from '../utils/sfx';
 import RatingsTab from './RatingsTab';
 import PlayerActions from './PlayerActions';
 import Shop from './Shop';
+import PlayerStats from './PlayerStats';
 import { Store, Star, Search, Video, Home, ShoppingCart } from 'lucide-react';
 import './MainTabs.css';
 
-type TabType = 'main' | 'search' | 'active' | 'ratings' | 'shop' | 'messages' | 'city';
+type TabType = 'main' | 'search' | 'active' | 'ratings' | 'shop';
 
-interface MainTabsProps {
-  initialTab?: TabType;
-}
-
-const MainTabs: React.FC<MainTabsProps> = ({ initialTab = 'main' }) => {
-  const [activeTab, setActiveTab] = useState<TabType>(initialTab);
+const MainTabs: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<TabType>('main');
+  const [ratingsMode, setRatingsMode] = useState<'dancers' | 'teams'>('dancers');
   const { state, availableProjects, activeProjects, acceptProject, abandonProject, updateActiveProject, completedProjects, setModalPause, reserveCostumeForProject, releaseReservedCostume, getReservedForProject, showEventIfIdle, clothesCatalog, playerInventory, buyClothesItem, pendingCostumeSelection, submitCostumeSelection, clearPendingCostumeSelection, npcs, fundProjectTraining, addPlayerMoney } = useGame();
   const [completionFilter, setCompletionFilter] = useState<'all'|'success'|'failed'|'cancelled'|'team'>('all');
   
@@ -189,7 +187,6 @@ const MainTabs: React.FC<MainTabsProps> = ({ initialTab = 'main' }) => {
           <Home size={18} style={{marginRight: 6}} /> Главная
         </button>
         <button
-          data-onboarding-target="main-tabs-search"
           className={`tab-btn ${activeTab === 'search' ? 'active' : ''}`}
           onClick={() => { setActiveTab('search'); playSFX('click.wav'); }}
         >
@@ -726,6 +723,7 @@ const MainTabs: React.FC<MainTabsProps> = ({ initialTab = 'main' }) => {
 
         {activeTab === 'main' && (
           <div className="tab-pane">
+            <PlayerStats />
             <PlayerActions />
             <h2>Активные проекты ({activeProjects.length})</h2>
             {activeProjects.length === 0 ? (
