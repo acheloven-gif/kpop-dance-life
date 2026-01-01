@@ -7,10 +7,14 @@ import Shop from './Shop';
 import { Store, Star, Search, Video, Home, ShoppingCart } from 'lucide-react';
 import './MainTabs.css';
 
-type TabType = 'main' | 'search' | 'active' | 'ratings' | 'shop';
+type TabType = 'main' | 'search' | 'active' | 'ratings' | 'shop' | 'messages' | 'city';
 
-const MainTabs: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<TabType>('main');
+interface MainTabsProps {
+  initialTab?: TabType;
+}
+
+const MainTabs: React.FC<MainTabsProps> = ({ initialTab = 'main' }) => {
+  const [activeTab, setActiveTab] = useState<TabType>(initialTab);
   const { state, availableProjects, activeProjects, acceptProject, abandonProject, updateActiveProject, completedProjects, setModalPause, reserveCostumeForProject, releaseReservedCostume, getReservedForProject, showEventIfIdle, clothesCatalog, playerInventory, buyClothesItem, pendingCostumeSelection, submitCostumeSelection, clearPendingCostumeSelection, npcs, fundProjectTraining, addPlayerMoney } = useGame();
   const [completionFilter, setCompletionFilter] = useState<'all'|'success'|'failed'|'cancelled'|'team'>('all');
   

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGame } from '../context/GameContext';
 import GameHeader from './GameHeader';
 import PlayerProfile from './PlayerProfile';
@@ -7,10 +7,14 @@ import MainTabs from './MainTabs';
 import Top5 from './Top5';
 import SeasonalBackground from './SeasonalBackground';
 import OnboardingOverlay from './OnboardingOverlay';
+import MobileHeader from './MobileHeader';
+import MobileHomeScreen from './MobileHomeScreen';
+import MobileBottomNav from './MobileBottomNav';
 import './GameScreen.css';
 
 const GameScreen: React.FC = () => {
   const { state, completeOnboarding } = useGame();
+  const [activeMobileTab, setActiveMobileTab] = useState('home');
   const showOnboarding = state.gameStarted && !state.onboardingCompleted;
 
   // Таймер игры: Год X Месяц Y День Z
@@ -35,6 +39,35 @@ const GameScreen: React.FC = () => {
   const day = String(calendarDay).padStart(2, '0');
   const month = String(calendarMonth + 1).padStart(2, '0');
   const dateStr = `${day}.${month}.${calendarYear}`;
+
+  // Detect if mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
+  if (isMobile) {
+    return (
+      <div className="mobile-game-screen">
+        {showOnboarding && (
+          <OnboardingOverlay
+            onComplete={completeOnboarding}
+            onSkip={completeOnboarding}
+          />
+        )}
+        <MobileHeader dateStr={timerStr} userName={state.player.name} />
+        
+        {activeMobileTab === 'home' && (
+          <MobileHomeScreen 
+            playerName={state.player.name}
+            onNavigate={setActiveMobileTab}
+          />
+        )}
+        {activeMobileTab === 'friends' && <MainTabs initialTab="messages" />}
+        {activeMobileTab === 'city' && <MainTabs initialTab="city" />}
+        {activeMobileTab === 'top5' && <Top5 />}
+
+        <MobileBottomNav activeTab={activeMobileTab} onTabChange={setActiveMobileTab} />
+      </div>
+    );
+  }
 
   return (
     <div className="game-screen">
