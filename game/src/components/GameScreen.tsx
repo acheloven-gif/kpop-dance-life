@@ -14,7 +14,7 @@ interface GameScreenProps {
   setActiveTab: (tab: string) => void;
 }
 
-const GameScreen: React.FC<GameScreenProps> = ({ activeTab, setActiveTab }) => {
+const GameScreen: React.FC<GameScreenProps> = () => {
   const { state, completeOnboarding } = useGame();
   const showOnboarding = state.gameStarted && !state.onboardingCompleted;
 
