@@ -178,6 +178,7 @@ const PlayerActions: React.FC = () => {
     <div className="player-actions">
       <div className="action-col">
         <button
+          data-onboarding-target="train-female-button"
           className={`btn-action-main btn-female ${!canTrainF ? 'disabled' : ''}`}
           onClick={trainFSkill}
           disabled={!canTrainF}

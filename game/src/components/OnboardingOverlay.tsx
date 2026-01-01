@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ChevronRight, X } from 'lucide-react';
 import './OnboardingOverlay.css';
 
 interface OnboardingStep {
   id: string;
   title: string;
   description: string;
-  highlight?: string;
+  action?: string; // What action the user needs to complete
+  targetElement?: string; // Element to highlight
   position?: 'left' | 'right' | 'center' | 'top' | 'bottom';
+  autoComplete?: boolean; // If true, completes when element is clicked
 }
 
 interface OnboardingOverlayProps {
@@ -18,68 +20,112 @@ interface OnboardingOverlayProps {
 const ONBOARDING_STEPS: OnboardingStep[] = [
   {
     id: 'welcome',
-    title: '🎤 Добро пожаловать в игру!',
-    description: 'Ты начинаешь свой путь как К-pop артист. Давай разберемся, как устроена игра.',
+    title: '🎤 Добро пожаловать в К-pop жизнь!',
+    description: 'Тебе предстоит стать звездой. Давайте начнем с тренировки.',
     position: 'center',
   },
   {
-    id: 'profile',
-    title: '👤 Твой профиль',
-    description: 'Здесь отображаются твои основные показатели: деньги, репутация, популярность и усталость. Следи за ними!',
-    highlight: 'player-profile',
-    position: 'right',
-  },
-  {
-    id: 'team',
-    title: '🤝 Команда',
-    description: 'Присоединись к К-pop группе, чтобы участвовать в проектах и получать больше доходов. Отношения в группе очень важны!',
-    highlight: 'team-block',
-    position: 'right',
-  },
-  {
-    id: 'tabs',
-    title: '📊 Основные действия',
-    description: 'Используй вкладки, чтобы тренироваться, общаться с персонажами, участвовать в проектах и совершать покупки в магазине.',
-    highlight: 'main-tabs',
+    id: 'train_female',
+    title: '🎯 Первый шаг: тренировка',
+    description: 'Давайте развивать твой женский стиль танца! Нажми кнопку "Тренировать женский стиль".',
+    targetElement: 'train-female-button',
     position: 'top',
+    autoComplete: true,
   },
   {
-    id: 'top5',
-    title: '🏆 Рейтинг лучших',
-    description: 'Смотри, как твои показатели сравниваются с другими артистами. Стремись к вершине!',
-    highlight: 'top-5-container',
-    position: 'left',
+    id: 'train_complete',
+    title: '✨ Отлично сделано!',
+    description: 'Ты успешно потренировался! Теперь найдем проект для работы. Перейди во вкладку "Поиск проектов".',
+    position: 'center',
+  },
+  {
+    id: 'search_projects',
+    title: '🎬 Поиск проектов',
+    description: 'Найди интересный проект и нажми "Принять" чтобы начать работу.',
+    targetElement: 'main-tabs-search',
+    position: 'top',
+    autoComplete: true,
+  },
+  {
+    id: 'project_accepted',
+    title: '🚀 Проект начат!',
+    description: 'Отлично! Теперь посещай тренировки регулярно, чтобы успешно завершить проект. Отслеживай прогресс в активных проектах.',
+    position: 'center',
   },
   {
     id: 'economy',
-    title: '💰 Экономика',
-    description: 'Зарабатывай деньги через проекты, обучай навыки танца и пения. Трать деньги на наряды и подарки!',
+    title: '💰 Управление ресурсами',
+    description: 'Зарабатывай деньги через проекты. Используй их для покупки одежды и подарков персонажам. Это повысит твой статус!',
     position: 'center',
   },
   {
     id: 'relationships',
-    title: '❤️ Отношения',
-    description: 'Строй дружбу и романтические отношения с персонажами. Это даст тебе преимущества в игре и откроет новые истории!',
+    title: '❤️ Построение отношений',
+    description: 'Общайся с персонажами, дарай им подарки и предлагай сотрудничество. Крепкие отношения - твой главный актив!',
     position: 'center',
   },
   {
-    id: 'daily',
-    title: '⏰ День за днем',
-    description: 'Каждый день приносит новые события. Управляй своей энергией - если она упадет, тебе нужно отдохнуть.',
+    id: 'ratings',
+    title: '🏆 Мониторинг рейтинга',
+    description: 'Следи за таблицей лучших. Твоя популярность и репутация - это ключ к успеху. Стремись к вершине рейтинга!',
     position: 'center',
   },
   {
-    id: 'goal',
-    title: '🎯 Цель игры',
-    description: 'Достигни максимальной популярности за 5 лет! Пусть весь мир узнает о твоем таланте. Удачи, звезда! ✨',
+    id: 'goals',
+    title: '🎯 Цель: Достичь вершины',
+    description: 'Максимизируй свою популярность за 5 лет игры. Каждый день приносит новые возможности - не упусти их! Давай, звезда! ✨',
     position: 'center',
   },
 ];
 
 export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({ onComplete, onSkip }) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [completedActions, setCompletedActions] = useState<Set<string>>(new Set());
+  const [highlightPos, setHighlightPos] = useState<{ top: number; left: number; width: number; height: number } | null>(null);
   const step = ONBOARDING_STEPS[currentStep];
   const progress = ((currentStep + 1) / ONBOARDING_STEPS.length) * 100;
+
+  // Position highlight and track when actions are completed
+  useEffect(() => {
+    if (step.autoComplete && step.targetElement) {
+      const handleElementClick = () => {
+        completeStep();
+      };
+
+      const element = document.querySelector(`[data-onboarding-target="${step.targetElement}"]`) ||
+                      document.querySelector(`#${step.targetElement}`) ||
+                      document.querySelector(`.${step.targetElement}`);
+      
+      if (element) {
+        // Position the highlight box over the target element
+        const rect = element.getBoundingClientRect();
+        setHighlightPos({
+          top: rect.top,
+          left: rect.left,
+          width: rect.width,
+          height: rect.height,
+        });
+
+        element.addEventListener('click', handleElementClick);
+        return () => element.removeEventListener('click', handleElementClick);
+      } else {
+        setHighlightPos(null);
+      }
+    } else {
+      setHighlightPos(null);
+    }
+  }, [currentStep, step]);
+
+  const completeStep = () => {
+    const newCompleted = new Set(completedActions);
+    newCompleted.add(step.id);
+    setCompletedActions(newCompleted);
+
+    // Move to next step after a short delay
+    setTimeout(() => {
+      handleNext();
+    }, 400);
+  };
 
   const handleNext = () => {
     if (currentStep < ONBOARDING_STEPS.length - 1) {
@@ -89,21 +135,26 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({ onComplete
     }
   };
 
-  const handlePrev = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
   const handleSkipAll = () => {
     onSkip();
   };
 
+  const canProceed = !step.autoComplete || completedActions.has(step.id);
+
   return (
     <div className="onboarding-overlay">
       {/* Highlight элемент */}
-      {step.highlight && (
-        <div className="onboarding-highlight" data-highlight={step.highlight} />
+      {step.targetElement && highlightPos && (
+        <div 
+          className="onboarding-highlight" 
+          data-highlight={step.targetElement}
+          style={{
+            top: highlightPos.top,
+            left: highlightPos.left,
+            width: highlightPos.width,
+            height: highlightPos.height,
+          }}
+        />
       )}
 
       {/* Главное окно обучения */}
@@ -117,6 +168,12 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({ onComplete
 
         <p className="onboarding-description">{step.description}</p>
 
+        {step.autoComplete && !canProceed && (
+          <div className="onboarding-action-hint">
+            👉 Нажми на выделенную область чтобы продолжить
+          </div>
+        )}
+
         {/* Прогресс */}
         <div className="onboarding-progress">
           <div className="progress-bar">
@@ -127,19 +184,11 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({ onComplete
 
         {/* Кнопки управления */}
         <div className="onboarding-controls">
-          <button
-            className="onboarding-button onboarding-button-secondary"
-            onClick={handlePrev}
-            disabled={currentStep === 0}
-            aria-label="Предыдущее"
-          >
-            <ChevronLeft size={18} />
-          </button>
-
           {currentStep < ONBOARDING_STEPS.length - 1 ? (
             <button
               className="onboarding-button onboarding-button-primary"
               onClick={handleNext}
+              disabled={!canProceed}
               aria-label="Далее"
             >
               Далее

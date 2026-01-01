@@ -189,6 +189,7 @@ const MainTabs: React.FC<MainTabsProps> = ({ initialTab = 'main' }) => {
           <Home size={18} style={{marginRight: 6}} /> Главная
         </button>
         <button
+          data-onboarding-target="main-tabs-search"
           className={`tab-btn ${activeTab === 'search' ? 'active' : ''}`}
           onClick={() => { setActiveTab('search'); playSFX('click.wav'); }}
         >

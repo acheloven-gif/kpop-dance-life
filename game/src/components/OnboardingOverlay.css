@@ -34,6 +34,7 @@
               inset 0 0 0 3px #ff52a0,
               0 0 20px rgba(255, 82, 160, 0.4);
   animation: pulse 2s infinite;
+  pointer-events: none;
 }
 
 @keyframes pulse {
@@ -174,7 +175,7 @@
 
 /* Description */
 .onboarding-description {
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   font-size: 15px;
   line-height: 1.6;
   color: rgba(245, 243, 240, 0.85);
@@ -186,6 +187,28 @@
 
 .dark-theme .onboarding-description {
   color: rgba(245, 243, 240, 0.85);
+}
+
+/* Action Hint */
+.onboarding-action-hint {
+  background: rgba(255, 82, 160, 0.1);
+  border-left: 4px solid #ff52a0;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #ff52a0;
+  margin-bottom: 16px;
+  font-weight: 600;
+  animation: pulse-text 1s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 /* Progress */
