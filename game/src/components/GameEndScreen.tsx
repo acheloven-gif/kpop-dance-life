@@ -102,7 +102,6 @@ const GameEndScreen: React.FC = () => {
         id: n.id,
         name: n.name,
         relationship: n.relationship || 'stranger',
-        avatar: n.avatar,
       })),
     });
 
